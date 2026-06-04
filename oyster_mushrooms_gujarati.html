@@ -4,9 +4,687 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ઓઇસ્ટર મશરૂમ્સ | પોષણ, લાભો અને ઉપયોગ</title>
+  <style>
+    :root{
+      --bg: #f6f1e7;
+      --surface: #fffaf2;
+      --surface-2: #f2eadc;
+      --text: #2b2a24;
+      --muted: #675f52;
+      --green: #2f5d3a;
+      --green-2: #4f7a53;
+      --brown: #8b5e34;
+      --gold: #b88a4a;
+      --border: rgba(43,42,36,.10);
+      --shadow: 0 18px 40px rgba(43,42,36,.10);
+      --radius: 24px;
+      --max: 1150px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body{
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(47,93,58,.10), transparent 30%),
+        radial-gradient(circle at top right, rgba(184,138,74,.10), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    img{
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+
+    .container{
+      width: min(100% - 32px, var(--max));
+      margin: 0 auto;
+    }
+
+    header{
+      padding: 28px 0 18px;
+    }
+
+    .hero{
+      position: relative;
+      overflow: hidden;
+      border-radius: calc(var(--radius) + 8px);
+      background: linear-gradient(135deg, rgba(255,250,242,.95), rgba(242,234,220,.90));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-grid{
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 0;
+      min-height: 520px;
+    }
+
+    .hero-content{
+      padding: clamp(24px, 4vw, 54px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .eyebrow{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(47,93,58,.10);
+      color: var(--green);
+      font-weight: 700;
+      border: 1px solid rgba(47,93,58,.14);
+      letter-spacing: .01em;
+    }
+
+    .eyebrow .dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 6px rgba(47,93,58,.12);
+    }
+
+    h1{
+      margin: 0;
+      font-size: clamp(2.1rem, 5vw, 4.2rem);
+      line-height: 1.08;
+      letter-spacing: -.03em;
+      color: var(--text);
+    }
+
+    .lead{
+      margin: 0;
+      max-width: 64ch;
+      font-size: 1.04rem;
+      color: var(--muted);
+    }
+
+    .hero-actions{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(43,42,36,.12);
+    }
+
+    .btn-primary{
+      background: linear-gradient(135deg, var(--green), var(--green-2));
+      color: #fff;
+    }
+
+    .btn-secondary{
+      background: rgba(255,255,255,.55);
+      color: var(--green);
+      border-color: rgba(47,93,58,.18);
+    }
+
+    .hero-media{
+      position: relative;
+      min-height: 320px;
+      background: #d9c9b2;
+    }
+
+    .hero-media img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 100%;
+    }
+
+    .hero-badge{
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      right: 18px;
+      backdrop-filter: blur(10px);
+      background: rgba(255,250,242,.78);
+      border: 1px solid rgba(255,255,255,.45);
+      border-radius: 18px;
+      padding: 14px 16px;
+      color: var(--text);
+      box-shadow: 0 12px 28px rgba(43,42,36,.14);
+    }
+
+    main{
+      padding: 26px 0 52px;
+    }
+
+    section{
+      margin-top: 22px;
+    }
+
+    .card{
+      background: rgba(255,250,242,.92);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(20px, 3.5vw, 34px);
+    }
+
+    .section-head{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .section-title{
+      margin: 0;
+      font-size: clamp(1.45rem, 3vw, 2.1rem);
+      color: var(--green);
+      line-height: 1.2;
+    }
+
+    .section-text{
+      margin: 0;
+      color: var(--muted);
+      max-width: 78ch;
+    }
+
+    .info-grid,
+    .benefit-grid{
+      display: grid;
+      gap: 16px;
+    }
+
+    .info-grid{
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 18px;
+    }
+
+    .benefit-grid{
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 18px;
+    }
+
+    .mini-card{
+      background: linear-gradient(180deg, #fffdfa, #f7f0e4);
+      border: 1px solid rgba(43,42,36,.08);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 10px 24px rgba(43,42,36,.06);
+    }
+
+    .mini-top{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .icon{
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(47,93,58,.10);
+      color: var(--green);
+      flex: 0 0 auto;
+    }
+
+    .mini-card h3{
+      margin: 0;
+      font-size: 1.04rem;
+      color: var(--text);
+    }
+
+    .mini-card p{
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .benefit-list{
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .benefit-list li{
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px;
+      background: rgba(255,255,255,.56);
+      border: 1px solid rgba(43,42,36,.08);
+      border-radius: 18px;
+    }
+
+    .benefit-list strong{
+      display: block;
+      margin-bottom: 4px;
+      color: var(--green);
+      font-size: 1.01rem;
+    }
+
+    .benefit-list span{
+      color: var(--muted);
+    }
+
+    .note{
+      margin-top: 18px;
+      padding: 18px 18px 18px 16px;
+      border-left: 6px solid var(--gold);
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(184,138,74,.12), rgba(47,93,58,.08));
+      color: var(--text);
+    }
+
+    .note strong{
+      color: var(--brown);
+    }
+
+    .culinary-box{
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 18px;
+      align-items: center;
+      margin-top: 18px;
+    }
+
+    .culinary-image{
+      border-radius: 22px;
+      overflow: hidden;
+      min-height: 260px;
+      box-shadow: 0 14px 30px rgba(43,42,36,.10);
+    }
+
+    .culinary-image img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 260px;
+    }
+
+    .steps{
+      display: grid;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .step{
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.58);
+      border: 1px solid rgba(43,42,36,.08);
+    }
+
+    .step .num{
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      flex: 0 0 auto;
+    }
+
+    .step p{
+      margin: 0;
+      color: var(--muted);
+    }
+
+    footer{
+      padding: 0 0 34px;
+    }
+
+    .contact{
+      background: linear-gradient(135deg, rgba(47,93,58,.96), rgba(30,66,39,.98));
+      color: #fff;
+      border-radius: calc(var(--radius) + 4px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.10);
+    }
+
+    .contact-inner{
+      padding: clamp(22px, 4vw, 38px);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .contact h2{
+      margin: 0 0 8px;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      line-height: 1.2;
+    }
+
+    .contact p{
+      margin: 0;
+      color: rgba(255,255,255,.86);
+      max-width: 62ch;
+    }
+
+    .contact-box{
+      display: grid;
+      gap: 10px;
+      justify-items: end;
+    }
+
+    .phone{
+      font-size: 1.05rem;
+      font-weight: 800;
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.16);
+      letter-spacing: .02em;
+    }
+
+    .contact .btn-primary{
+      background: linear-gradient(135deg, #f6d28f, #e4b96b);
+      color: #2a2419;
+    }
+
+    .footer-note{
+      text-align: center;
+      color: var(--muted);
+      font-size: .95rem;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 980px){
+      .hero-grid,
+      .culinary-box,
+      .contact-inner{
+        grid-template-columns: 1fr;
+      }
+
+      .hero-media{
+        min-height: 280px;
+      }
+
+      .info-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .benefit-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .contact-box{
+        justify-items: start;
+      }
+    }
+
+    @media (max-width: 640px){
+      header{
+        padding-top: 14px;
+      }
+
+      .hero-content{
+        padding: 22px;
+      }
+
+      .lead{
+        font-size: 1rem;
+      }
+
+      .btn{
+        width: 100%;
+      }
+
+      .hero-actions{
+        flex-direction: column;
+      }
+
+      .benefit-list li{
+        grid-template-columns: 1fr;
+      }
+
+      .icon{
+        width: 42px;
+        height: 42px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>HTML file generated</h1>
-  <p>The full code provided by the user should be saved here.</p>
+  <header class="container">
+    <section class="hero" aria-label="ઓઇસ્ટર મશરૂમ્સ પરિચય">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="eyebrow"><span class="dot"></span> કુદરતી પોષણ • તાજો સ્વાદ • ઉત્તમ ઉપયોગિતા</div>
+          <h1>ઓઇસ્ટર મશરૂમ્સ: સ્વાસ્થ્ય અને સ્વાદનું સંતુલિત સમન્વય</h1>
+          <p class="lead">
+            ઓઇસ્ટર મશરૂમ્સ એક નરમ ટેક્સચરવાળી, પૌષ્ટિક અને સરળતાથી રાંધાઈ શકે એવી ખાદ્ય ફૂગ છે.
+            તે રોજિંદા ભોજનમાં ઉમેરો તો સ્વાદ પણ વધે અને શરીરને જરૂરી પોષક તત્ત્વો પણ મળે.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">સંપર્ક કરો</a>
+            <a class="btn btn-secondary" href="#nutrition">પોષણ જુઓ</a>
+          </div>
+        </div>
+        <div class="hero-media">
+          <img
+            src="https://images.unsplash.com/photo-1615485925600-97237b2acaf8?auto=format&fit=crop&w=1200&q=80"
+            alt="તાજા ઓઇસ્ટર મશરૂમ્સ"
+          />
+          <div class="hero-badge">
+            તાજા ઓઇસ્ટર મશરૂમ્સ ભોજનમાં ઉમેરવાથી હળવો, સુગંધિત અને પૌષ્ટિક સ્વાદ મળે છે.
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main class="container">
+    <section class="card" aria-labelledby="intro">
+      <div class="section-head">
+        <h2 class="section-title" id="intro">પરિચય: ઓઇસ્ટર મશરૂમ્સ શું છે?</h2>
+        <p class="section-text">
+          ઓઇસ્ટર મશરૂમ્સ એવા ખાદ્ય મશરૂમ્સ છે જે શંખ જેવા આકાર, હળવા સ્વાદ અને નરમ બંધારણ માટે જાણીતા છે.
+          તે કુદરતી રીતે ઝડપથી વધે છે અને વિવિધ વાનગીઓમાં સરળતાથી વાપરી શકાય છે. શાકાહારી આહારમાં પ્રોટીન અને ખનિજોની
+          ગુણવત્તાયુક્ત ઉમેરા તરીકે તેની ખાસ માંગ રહે છે.
+        </p>
+      </div>
+    </section>
+
+    <section class="card" id="nutrition" aria-labelledby="nutrition-title">
+      <div class="section-head">
+        <h2 class="section-title" id="nutrition-title">પોષણ પ્રોફાઇલ</h2>
+        <p class="section-text">
+          ઓઇસ્ટર મશરૂમ્સમાં વિટામિન, ખનિજ અને વનસ્પતિજન્ય પ્રોટીનનું સંતુલિત પ્રમાણ જોવા મળે છે.
+        </p>
+      </div>
+
+      <div class="info-grid">
+        <article class="mini-card">
+          <div class="mini-top">
+            <div class="icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" role="img" aria-label="વિટામિન આઇકન">
+                <path d="M12 3v18M6 7c2.5 0 4 .8 6 3 2-2.2 3.5-3 6-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M7 17c1.7 0 2.7-.5 5-2 2.3 1.5 3.3 2 5 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>વિટામિન</h3>
+          </div>
+          <p>
+            તેમાં ખાસ કરીને બી-કોમ્પ્લેક્સ વિટામિન જેવા કે નાયસિન, રિબોફ્લેવિન અને પેન્ટોથેનિક એસિડ મળે છે,
+            જે શરીરમાં ઊર્જા બનાવવામાં અને સામાન્ય કાર્યપ્રણાલી જાળવવામાં સહાય કરે છે.
+          </p>
+        </article>
+
+        <article class="mini-card">
+          <div class="mini-top">
+            <div class="icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" role="img" aria-label="ખનિજ આઇકન">
+                <path d="M12 3l7 4v10l-7 4-7-4V7l7-4Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 7v10M8 9h8M8 15h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>ખનિજ તત્ત્વો</h3>
+          </div>
+          <p>
+            પોટેશિયમ, ફોસ્ફરસ, લોહતત્ત્વ અને તાંબું જેવા ખનિજ તત્ત્વો શરીરના પાચન, લોહી બનાવવાની પ્રક્રિયા
+            અને સ્નાયુઓની કાર્યક્ષમતા માટે મહત્વપૂર્ણ છે.
+          </p>
+        </article>
+
+        <article class="mini-card">
+          <div class="mini-top">
+            <div class="icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" role="img" aria-label="પ્રોટીન આઇકન">
+                <path d="M7 20c2-2 8-2 10 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M8 6c0-2 2-3 4-3s4 1 4 3-1 3-4 3-4-1-4-3Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M5 11c1-2 4-3 7-3s6 1 7 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>પ્રોટીન</h3>
+          </div>
+          <p>
+            ઓઇસ્ટર મશરૂમ્સમાં વનસ્પતિજન્ય પ્રોટીન મળે છે. તેથી તે સ્નાયુઓની મરામત, શરીરની વૃદ્ધિ
+            અને સંતોષકારક ભોજન માટે ઉત્તમ વિકલ્પ બની શકે છે.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="benefits-title">
+      <div class="section-head">
+        <h2 class="section-title" id="benefits-title">ટોપ આરોગ્યલાભ</h2>
+        <p class="section-text">
+          સંતુલિત આહારના ભાગરૂપે ઓઇસ્ટર મશરૂમ્સ અનેક રીતે લાભદાયક બની શકે છે.
+        </p>
+      </div>
+
+      <ul class="benefit-list">
+        <li>
+          <div class="icon" aria-hidden="true">🍃</div>
+          <div>
+            <strong>રોગપ્રતિકારક શક્તિમાં સહાય</strong>
+            <span>કુદરતી પોષક તત્ત્વો શરીરની રક્ષણાત્મક ક્ષમતાને ટેકો આપે છે અને સારાં સ્વાસ્થ્યને જાળવવામાં મદદ કરે છે.</span>
+          </div>
+        </li>
+        <li>
+          <div class="icon" aria-hidden="true">❤️</div>
+          <div>
+            <strong>હૃદય માટે અનુકૂળ</strong>
+            <span>ઓછું ચરબીયુક્ત બંધારણ અને પોટેશિયમની હાજરી તેને હૃદયમૈત્રીભર્યું વિકલ્પ બનાવે છે.</span>
+          </div>
+        </li>
+        <li>
+          <div class="icon" aria-hidden="true">🌾</div>
+          <div>
+            <strong>પાચનમાં સરળ</strong>
+            <span>હળવા સ્વાદ અને નરમ બંધારણને કારણે તે વધુ ભારે લાગતું નથી અને સહેલાઈથી ભોજનમાં સમાય છે.</span>
+          </div>
+        </li>
+        <li>
+          <div class="icon" aria-hidden="true">⚡</div>
+          <div>
+            <strong>ઊર્જા માટે મદદરૂપ</strong>
+            <span>બી-વિટામિન ખોરાકને ઊર્જામાં ફેરવવામાં મદદ કરે છે, જેથી દૈનિક સ્ફૂર્તિ જળવાય.</span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="note">
+        <strong>નોંધ:</strong> ઓઇસ્ટર મશરૂમ્સને યોગ્ય રીતે સાફ કરીને અને પૂરતા પ્રમાણમાં રાંધીને ખાવું વધુ યોગ્ય છે.
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="culinary-title">
+      <div class="section-head">
+        <h2 class="section-title" id="culinary-title">રસોઈમાં ઉપયોગ કેવી રીતે કરવો?</h2>
+        <p class="section-text">
+          ઓઇસ્ટર મશરૂમ્સ બહુવિધ વાનગીઓમાં સરળતાથી વાપરી શકાય છે. તેનો સ્વાદ હળવો હોવાથી તે મસાલા સાથે સારી રીતે ઘળી જાય છે.
+        </p>
+      </div>
+
+      <div class="culinary-box">
+        <div class="culinary-image">
+          <img
+            src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=80"
+            alt="મશરૂમથી તૈયાર થયેલી સ્વાદિષ્ટ વાનગી"
+          />
+        </div>
+
+        <div>
+          <div class="steps">
+            <div class="step">
+              <div class="num">૧</div>
+              <p>લસણ, હળવો મસાલો અને થોડું તેલ અથવા બટર સાથે સાંતળી શકાય છે.</p>
+            </div>
+            <div class="step">
+              <div class="num">૨</div>
+              <p>સૂપ, સ્ટ્યૂ, ગ્રેવી, નૂડલ્સ અને પાસ્તામાં ઉત્તમ સ્વાદ આપે છે.</p>
+            </div>
+            <div class="step">
+              <div class="num">૩</div>
+              <p>ચપાતી, ભાત અથવા રોટલી સાથે શાક તરીકે પીરસી શકાય છે.</p>
+            </div>
+            <div class="step">
+              <div class="num">૪</div>
+              <p>હળવા તીખા મસાલા અને કાળા મરી સાથે તેનો કુદરતી સ્વાદ વધુ સરસ લાગે છે.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container" id="contact">
+    <section class="contact" aria-labelledby="contact-title">
+      <div class="contact-inner">
+        <div>
+          <h2 id="contact-title">સંપર્ક કરો</h2>
+          <p>
+            ઓઇસ્ટર મશરૂમ્સ વિશે વધુ માહિતી, ઉત્પાદન અથવા સપ્લાય સંબંધિત પૂછપરછ માટે નીચે આપેલ નંબર પર સંપર્ક કરો.
+          </p>
+        </div>
+
+        <div class="contact-box">
+          <div class="phone">+91 9265621750</div>
+          <a class="btn btn-primary" href="tel:+919265621750">હમણાં જ કોલ કરો</a>
+        </div>
+      </div>
+    </section>
+    <div class="footer-note">ઓઇસ્ટર મશરૂમ્સ — પોષણ, સ્વાદ અને કુદરતી ગુણવત્તાનો વિશ્વસનીય વિકલ્પ.</div>
+  </footer>
 </body>
 </html>
