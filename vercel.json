@@ -1,0 +1,17 @@
+{
+  "name": "oyster-mushroom",
+  "version": 2,
+  "env": {},
+  "builds": [
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "index.html"
+    }
+  ]
+}
